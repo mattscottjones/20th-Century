@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 900px;
+                 height: 800px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"betweenness_centrality": 0.5481968641114983, "closeness_centrality": 0.5324675324675324, "degree_centrality": 0.3902439024390244, "font": {"color": "white"}, "group": 1, "id": "Germany", "label": "Germany", "shape": "dot", "size": 16}, {"betweenness_centrality": 0.11091608594657378, "closeness_centrality": 0.4270833333333333, "degree_centrality": 0.14634146341463417, "font": {"color": "white"}, "group": 1, "id": "Russia", "label": "Russia", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.0008130081300813008, "closeness_centrality": 0.37272727272727274, "degree_centrality": 0.07317073170731708, "font": {"color": "white"}, "group": 1, "id": "Austria", "label": "Austria", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.002215447154471545, "closeness_centrality": 0.3904761904761905, "degree_centrality": 0.07317073170731708, "font": {"color": "white"}, "group": 1, "id": "Hungary", "label": "Hungary", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.09853658536585372, "closeness_centrality": 0.36936936936936937, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 0, "id": "Yugoslavia", "label": "Yugoslavia", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.05344512195121953, "closeness_centrality": 0.41, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 1, "id": "Italy", "label": "Italy", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.37272727272727274, "degree_centrality": 0.07317073170731708, "font": {"color": "white"}, "group": 0, "id": "Poland", "label": "Poland", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.03040795586527293, "closeness_centrality": 0.41414141414141414, "degree_centrality": 0.12195121951219512, "font": {"color": "white"}, "group": 3, "id": "the Soviet Union", "label": "the Soviet Union", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.3565217391304348, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 1, "id": "Belgium", "label": "Belgium", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.3565217391304348, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 1, "id": "Sweden", "label": "Sweden", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0608246225319396, "closeness_centrality": 0.3867924528301887, "degree_centrality": 0.12195121951219512, "font": {"color": "white"}, "group": 0, "id": "France", "label": "France", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.23762485481997683, "closeness_centrality": 0.45054945054945056, "degree_centrality": 0.1951219512195122, "font": {"color": "white"}, "group": 2, "id": "Japan", "label": "Japan", "shape": "dot", "size": 8}, {"betweenness_centrality": 0.10346544715447162, "closeness_centrality": 0.3904761904761905, "degree_centrality": 0.14634146341463417, "font": {"color": "white"}, "group": 0, "id": "the United Kingdom", "label": "the United Kingdom", "shape": "dot", "size": 6}, {"betweenness_centrality": 0.2807970383275261, "closeness_centrality": 0.4823529411764706, "degree_centrality": 0.2682926829268293, "font": {"color": "white"}, "group": 3, "id": "the United States", "label": "the United States", "shape": "dot", "size": 11}, {"betweenness_centrality": 0.009290069686411148, "closeness_centrality": 0.40594059405940597, "degree_centrality": 0.07317073170731708, "font": {"color": "white"}, "group": 3, "id": "Cuba", "label": "Cuba", "shape": "dot", "size": 3}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.36936936936936937, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 1, "id": "Finland", "label": "Finland", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.04939024390243903, "closeness_centrality": 0.36283185840707965, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 1, "id": "Denmark", "label": "Denmark", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.06097560975609756, "closeness_centrality": 0.3228346456692913, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 4, "id": "Israel", "label": "Israel", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.271523178807947, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 0, "id": "Czechoslovakia", "label": "Czechoslovakia", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.01532520325203252, "closeness_centrality": 0.3014705882352941, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 0, "id": "Greece", "label": "Greece", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.2847222222222222, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 0, "id": "Albania", "label": "Albania", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.008638211382113821, "closeness_centrality": 0.3037037037037037, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 0, "id": "Algeria", "label": "Algeria", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.2827586206896552, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 0, "id": "Spain", "label": "Spain", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.00625, "closeness_centrality": 0.2887323943661972, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 0, "id": "Morocco", "label": "Morocco", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.012389663182346109, "closeness_centrality": 0.2949640287769784, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 0, "id": "Ghana", "label": "Ghana", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.06342334494773519, "closeness_centrality": 0.36283185840707965, "degree_centrality": 0.12195121951219512, "font": {"color": "white"}, "group": 3, "id": "Vietnam", "label": "Vietnam", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.01583333333333333, "closeness_centrality": 0.36607142857142855, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 2, "id": "China", "label": "China", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.33064516129032256, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 3, "id": "Canada", "label": "Canada", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.2679738562091503, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 1, "id": "Norway", "label": "Norway", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.14268292682926828, "closeness_centrality": 0.2867132867132867, "degree_centrality": 0.0975609756097561, "font": {"color": "white"}, "group": 4, "id": "Libya", "label": "Libya", "shape": "dot", "size": 4}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.22404371584699453, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 4, "id": "Ukraine", "label": "Ukraine", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.04878048780487805, "closeness_centrality": 0.2265193370165746, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 4, "id": "Egypt", "label": "Egypt", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.11463414634146342, "closeness_centrality": 0.35344827586206895, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 4, "id": "Iran", "label": "Iran", "shape": "dot", "size": 2}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.18552036199095023, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 4, "id": "Iraq", "label": "Iraq", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.31297709923664124, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 2, "id": "Philippines", "label": "Philippines", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.31297709923664124, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 2, "id": "Australia", "label": "Australia", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.31297709923664124, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 2, "id": "Guinea", "label": "Guinea", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.10296893147502906, "closeness_centrality": 0.3445378151260504, "degree_centrality": 0.12195121951219512, "font": {"color": "white"}, "group": 2, "id": "India", "label": "India", "shape": "dot", "size": 5}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.328, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 3, "id": "Cambodia", "label": "Cambodia", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.2578616352201258, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 2, "id": "Pakistan", "label": "Pakistan", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.0, "closeness_centrality": 0.2578616352201258, "degree_centrality": 0.024390243902439025, "font": {"color": "white"}, "group": 2, "id": "Singapore", "label": "Singapore", "shape": "dot", "size": 1}, {"betweenness_centrality": 0.01119918699186992, "closeness_centrality": 0.2887323943661972, "degree_centrality": 0.04878048780487805, "font": {"color": "white"}, "group": 3, "id": "Kenya", "label": "Kenya", "shape": "dot", "size": 2}]);
+                  edges = new vis.DataSet([{"from": "Germany", "to": "Russia", "value": 9, "width": 1}, {"from": "Germany", "to": "Austria", "value": 10, "width": 1}, {"from": "Germany", "to": "Hungary", "value": 9, "width": 1}, {"from": "Germany", "to": "Yugoslavia", "value": 4, "width": 1}, {"from": "Germany", "to": "Italy", "value": 14, "width": 1}, {"from": "Germany", "to": "Poland", "value": 15, "width": 1}, {"from": "Germany", "to": "the Soviet Union", "value": 7, "width": 1}, {"from": "Germany", "to": "Belgium", "value": 2, "width": 1}, {"from": "Germany", "to": "Sweden", "value": 6, "width": 1}, {"from": "Germany", "to": "France", "value": 15, "width": 1}, {"from": "Germany", "to": "Japan", "value": 17, "width": 1}, {"from": "Germany", "to": "the United Kingdom", "value": 4, "width": 1}, {"from": "Germany", "to": "the United States", "value": 6, "width": 1}, {"from": "Germany", "to": "Cuba", "value": 4, "width": 1}, {"from": "Germany", "to": "Finland", "value": 6, "width": 1}, {"from": "Germany", "to": "Denmark", "value": 6, "width": 1}, {"from": "Russia", "to": "Austria", "value": 5, "width": 1}, {"from": "Russia", "to": "the United States", "value": 6, "width": 1}, {"from": "Russia", "to": "Italy", "value": 5, "width": 1}, {"from": "Russia", "to": "Israel", "value": 6, "width": 1}, {"from": "Russia", "to": "Finland", "value": 6, "width": 1}, {"from": "Austria", "to": "Hungary", "value": 6, "width": 1}, {"from": "Hungary", "to": "the United States", "value": 1, "width": 1}, {"from": "Yugoslavia", "to": "Czechoslovakia", "value": 12, "width": 1}, {"from": "Yugoslavia", "to": "Greece", "value": 12, "width": 1}, {"from": "Yugoslavia", "to": "Albania", "value": 6, "width": 1}, {"from": "Italy", "to": "Algeria", "value": 4, "width": 1}, {"from": "Italy", "to": "Japan", "value": 5, "width": 1}, {"from": "Spain", "to": "the United Kingdom", "value": 2, "width": 1}, {"from": "the United Kingdom", "to": "France", "value": 6, "width": 1}, {"from": "the United Kingdom", "to": "Poland", "value": 11, "width": 1}, {"from": "the United Kingdom", "to": "Morocco", "value": 5, "width": 1}, {"from": "the United Kingdom", "to": "Greece", "value": 1, "width": 1}, {"from": "France", "to": "Poland", "value": 5, "width": 1}, {"from": "France", "to": "Greece", "value": 4, "width": 1}, {"from": "France", "to": "Ghana", "value": 4, "width": 1}, {"from": "the Soviet Union", "to": "Vietnam", "value": 5, "width": 1}, {"from": "the Soviet Union", "to": "China", "value": 9, "width": 1}, {"from": "the Soviet Union", "to": "the United States", "value": 6, "width": 1}, {"from": "the Soviet Union", "to": "Canada", "value": 3, "width": 1}, {"from": "Belgium", "to": "Denmark", "value": 5, "width": 1}, {"from": "Denmark", "to": "Norway", "value": 17, "width": 1}, {"from": "Denmark", "to": "Sweden", "value": 5, "width": 1}, {"from": "Greece", "to": "Albania", "value": 6, "width": 1}, {"from": "Libya", "to": "Ukraine", "value": 2, "width": 1}, {"from": "Libya", "to": "Egypt", "value": 15, "width": 1}, {"from": "Libya", "to": "Israel", "value": 5, "width": 1}, {"from": "Libya", "to": "Iran", "value": 6, "width": 1}, {"from": "Egypt", "to": "Iraq", "value": 5, "width": 1}, {"from": "Japan", "to": "the United States", "value": 48, "width": 1}, {"from": "Japan", "to": "China", "value": 27, "width": 1}, {"from": "Japan", "to": "Philippines", "value": 10, "width": 1}, {"from": "Japan", "to": "Australia", "value": 10, "width": 1}, {"from": "Japan", "to": "Guinea", "value": 10, "width": 1}, {"from": "Japan", "to": "India", "value": 5, "width": 1}, {"from": "the United States", "to": "China", "value": 14, "width": 1}, {"from": "the United States", "to": "Iran", "value": 4, "width": 1}, {"from": "the United States", "to": "Vietnam", "value": 20, "width": 1}, {"from": "the United States", "to": "Cambodia", "value": 9, "width": 1}, {"from": "the United States", "to": "Cuba", "value": 5, "width": 1}, {"from": "the United States", "to": "Canada", "value": 1, "width": 1}, {"from": "Morocco", "to": "Algeria", "value": 6, "width": 1}, {"from": "China", "to": "India", "value": 12, "width": 1}, {"from": "India", "to": "Vietnam", "value": 4, "width": 1}, {"from": "India", "to": "Pakistan", "value": 6, "width": 1}, {"from": "India", "to": "Singapore", "value": 5, "width": 1}, {"from": "Vietnam", "to": "Kenya", "value": 5, "width": 1}, {"from": "Vietnam", "to": "Cuba", "value": 9, "width": 1}, {"from": "Kenya", "to": "Ghana", "value": 6, "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 200
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
