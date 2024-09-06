@@ -11,15 +11,15 @@
 <details>
 <ul>
   <li><a href="#general-info">General Info</a></li>
-  <li><a href="#🖥-tools">Tools</a></li>
+  <li><a href="#tools">Tools</a></li>
   <li><a href="#data-source">Data Source</a></li>
-  <li><a href="#📂-project-file-setup">Project File Setup</a></li>
-  <li><a href="#📑-citation">Citation</a></li>
+  <li><a href="#project-file-setup">Project File Setup</a></li>
+  <li><a href="#citation">Citation</a></li>
 </ul>
 </details>
 
 
-## 🗺 GENERAL INFO
+## GENERAL INFO
 The Institute of Public Policy believes that past events heavily influence the current geopolitical climate. To delve deeper into this hypothesis, a clearer understanding of the historical relationships between countries in the twentieth century is needed. In this case, a visualization of the historical relationships between countries will satisfy these key questions:
 
 1. Which countries had the most influence during the 20th Century?
@@ -30,7 +30,7 @@ The Institute of Public Policy believes that past events heavily influence the c
 </p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🖥 TOOLS
+## TOOLS
 For this project, the following Python libraries were used:
 * pandas - for data analysis
 * numpy - for mathematical equations
@@ -48,13 +48,17 @@ For this project, the following Python libraries were used:
 Data was scraped from the Wikipedia page, **[Key events of the 20th century](https://en.wikipedia.org/w/index.php?title=Key_events_of_the_20th_century&oldid=1244115362)**, in August 2024. Using BeautifulSoup the full text of the article was saved as a text file, `20th Century Events.txt`. And using Selenium, all names of countries in the article were compiled into a csv file `countries_list_20th_century_1.5.csv`. 
 
 The full details of the data are available **[here](https://en.wikipedia.org/w/index.php?title=Key_events_of_the_20th_century&oldid=1244115362)**.
-
-
-**Note:** The information on Wikipedia is curated by editors around the world. Although there is little incentive for bias in this data, the method of data recording lends itself to possible errors. Also, relying on only one source to determine a country's global importance introduces sampling bias. Depending on the main contributing editors to this Wikipedia page, there may be an emphasis on certain countries' involvement in global affairs over others. For instance, in 2024, we're seeing the consequences of many decades of unrest between Egypt, Israel, Palestine, Syria, and other Middle Eastern countries. The preceding events, that began in the 20th century, are not mentioned in this article.
+<br>
+<br>
+<br>
+<i>**Potential Bias #1:** The information on Wikipedia is curated by editors around the world. Although there is little incentive for bias in this data, the method of data recording lends itself to possible errors.</i>
+<br>
+<br>
+<i>**Potential Bias #2:** Relying on only one source to determine a country's global importance introduces sampling bias. Depending on the main contributing editors to this Wikipedia page, there may be an emphasis on certain countries' involvement in global affairs over others. For instance, in 2024, we're seeing the consequences of many decades of unrest between Egypt, Israel, Palestine, Syria, and other Middle Eastern countries. The preceding events, that began in the 20th century, are not mentioned in this article.</i>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## 📂 PROJECT FILE SETUP
+## PROJECT FILE SETUP
 1. Project Management
      * Project brief laying out the expectations and deliverables
 2. Data
@@ -78,6 +82,6 @@ The full details of the data are available **[here](https://en.wikipedia.org/w/i
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## 📑 CITATION
+## CITATION
 Key events of the 20th century. (2024, September 6). In Wikipedia https://en.wikipedia.org/w/index.php?title=Key_events_of_the_20th_century&oldid=1244115362
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
