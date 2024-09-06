@@ -6,14 +6,17 @@
   Scraping a Wikipedia page to find country interrelations in the 20th century.
 </h3>
 
+
 ## TABLE OF CONTENTS
+<details>
 <ul>
-  <li><a href="#general-info">General Info</a></li>
-  <li><a href="#tools">Tools</a></li>
-  <li><a href="#data-source">Data Source</a></li>
-  <li><a href="#project-file-setup">Project File Setup</a></li>
-  <li><a href="#citation">Citation</a></li>
+  <li><a href="#🗺-general-info">General Info</a></li>
+  <li><a href="#🖥-tools">Tools</a></li>
+  <li><a href="#📊-data-source">Data Source</a></li>
+  <li><a href="#📂-project-file-setup">Project File Setup</a></li>
+  <li><a href="#📑-citation">Citation</a></li>
 </ul>
+</details>
 
 
 ## 🗺 GENERAL INFO
