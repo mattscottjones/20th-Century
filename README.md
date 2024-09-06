@@ -66,7 +66,7 @@ The full details of the data are available **[here](https://en.wikipedia.org/w/i
      * Centrality Measure bar charts
   
 <p align="center">
-<img width=48% alt="Screenshot 2024-07-27 at 10 31 08 AM" src="https://github.com/user-attachments/assets/dbf34d85-3024-4327-9cee-79afd1a51f4e">      <img width=48% alt="Screenshot 2024-07-27 at 5 36 03 PM" src="https://github.com/user-attachments/assets/b28a693b-21f5-44fe-9ce1-71e51d81c5e4">
+<img width=48% alt="degree_centrality_20th-Century_countries" src="(https://github.com/user-attachments/assets/dbf6f334-7e0c-405d-80ab-a65ba1e87d94)">      <img width=48% alt="Screenshot 2024-07-27 at 5 36 03 PM" src="https://github.com/user-attachments/assets/b28a693b-21f5-44fe-9ce1-71e51d81c5e4">
 </p>
 
 
