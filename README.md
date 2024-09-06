@@ -10,9 +10,9 @@
 ## TABLE OF CONTENTS
 <details>
 <ul>
-  <li><a href="#🗺-general-info">General Info</a></li>
+  <li><a href="#general-info">General Info</a></li>
   <li><a href="#🖥-tools">Tools</a></li>
-  <li><a href="#📊-data-source">Data Source</a></li>
+  <li><a href="#data-source">Data Source</a></li>
   <li><a href="#📂-project-file-setup">Project File Setup</a></li>
   <li><a href="#📑-citation">Citation</a></li>
 </ul>
@@ -44,7 +44,7 @@ For this project, the following Python libraries were used:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## 📊 DATA
+## DATA SOURCE
 Data was scraped from the Wikipedia page, **[Key events of the 20th century](https://en.wikipedia.org/w/index.php?title=Key_events_of_the_20th_century&oldid=1244115362)**, in August 2024. Using BeautifulSoup the full text of the article was saved as a text file, `20th Century Events.txt`. And using Selenium, all names of countries in the article were compiled into a csv file `countries_list_20th_century_1.5.csv`. 
 
 The full details of the data are available **[here](https://en.wikipedia.org/w/index.php?title=Key_events_of_the_20th_century&oldid=1244115362)**.
