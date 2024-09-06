@@ -7,11 +7,11 @@
 </h3>
 
 ## TABLE OF CONTENTS
-* <a href="#general-info">General Info</a>
-* <a href="#tools">Tools</a>
-* <a href="#data-source">Data Source</a>
-* <a href="#project-file-setup">Project File Setup</a>
-* <a href="#citation">Citation</a>
+* <a href="##general-info">General Info</a>
+* <a href="##tools">Tools</a>
+* <a href="##data-source">Data Source</a>
+* <a href="##project-file-setup">Project File Setup</a>
+* <a href="##citation">Citation</a>
 
 
 ## 🗺 GENERAL INFO
